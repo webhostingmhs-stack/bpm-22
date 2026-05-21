@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Berkas Perkuliahan - BPM FPIK UBT</title>
-    <link rel="stylesheet" href="/asset/style.css">
-    <link rel="stylesheet" href="/asset/bg-about.css">
+    <link rel="stylesheet" href="../../asset/style.css">
+    <link rel="stylesheet" href="../../asset/bg-about.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="/asset/image-asset/logo-bpm.png">
+    <link rel="icon" href="../../asset/image-asset/logo-bpm.png">
     <style>
         :root {
             --primary: #0F4C81;
@@ -25,7 +25,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(rgba(31, 31, 34, 0.272), rgba(214, 213, 255, 0.272)), url('/asset/image-asset/bg-hero.jpg');
+            background: linear-gradient(rgba(31, 31, 34, 0.272), rgba(214, 213, 255, 0.272)), url('../../asset/image-asset/bg-hero.jpg');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -152,7 +152,6 @@
             display: block;
         }
 
-        /* Main Content */
         .berkas-container {
             max-width: 1200px;
             margin: 50px auto;
@@ -329,23 +328,23 @@
 <nav class="navbar">
     <div class="navbar-logo">
         <div class="logo-icon">
-            <img src="/asset/image-asset/logo-bpm.png" alt="Logo BPM">
+            <img src="../../asset/image-asset/logo-bpm.png" alt="Logo BPM">
         </div>
         <h1>BPM FPIK UBT</h1>
     </div>
     <div class="nav-menu">
-        <a href="/index.html">Beranda</a>
-        <a href="/html/about.html">Tentang</a>
+        <a href="../../index.html">Beranda</a>
+        <a href="../about.html">Tentang</a>
         <div class="dropdown">
             <button class="dropbtn">More</button>
             <div class="dropdown-content">
-                <a href="/html/dashboard/penilaian.html">Penilaian Dosen</a>
-                <a href="/html/dashboard/aspirasi.html">Aspirasi</a>
-                <a href="/qr-generator.html">QR Code</a>
-                <a href="/html/dashboard/sejarah.html">Sejarah</a>
-                <a href="/html/dashboard/author.html">Pengembang</a>
-                <a href="/html/dashboard/download-surat-bimbingan.html">Berkas Perkuliahan</a>
-                <a href="/html/dashboard/administrasi.html">Administrasi</a>
+                <a href="penilaian.html">Penilaian Dosen</a>
+                <a href="aspirasi.html">Aspirasi</a>
+                <a href="../../qr-generator.html">QR Code</a>
+                <a href="sejarah.html">Sejarah</a>
+                <a href="author.html">Pengembang</a>
+                <a href="download-surat-bimbingan.html">Berkas Perkuliahan</a>
+                <a href="administrasi.html">Administrasi</a>
             </div>
         </div>
     </div>
@@ -376,9 +375,7 @@
 </footer>
 
 <script>
-    // ============= KONFIGURASI =============
-    // Ganti dengan URL Web App Google Apps Script Anda setelah deploy
-    const API_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzElA-8pOdO9SLZU9SUHbuP2wINi1va1Z8XIFNK9htVnv6OnSy7xmUIrCR0EKGEcbXPzA/exec';
     
     let semuaBerkas = [];
     let kategoriAktif = 'semua';
@@ -426,7 +423,6 @@
                 default: kategoriClass = 'kategori-lainnya';
             }
             
-            // Tentukan icon berdasarkan jenis file
             let fileIcon = '📄';
             if (b.namaFile && b.namaFile.toLowerCase().includes('.pdf')) fileIcon = '📕';
             else if (b.namaFile && b.namaFile.toLowerCase().includes('.doc')) fileIcon = '📘';
@@ -440,9 +436,7 @@
                     <span class="berkas-kategori ${kategoriClass}">${escapeHtml(b.kategori)}</span>
                     <div class="berkas-deskripsi">${escapeHtml(b.deskripsi || 'Tidak ada deskripsi')}</div>
                     <div class="berkas-tanggal">Upload: ${escapeHtml(b.tanggal)}</div>
-                    <a href="${escapeHtml(b.link)}" class="btn-download" target="_blank">
-                        Download
-                    </a>
+                    <a href="${escapeHtml(b.link)}" class="btn-download" target="_blank">Download</a>
                 </div>
             `;
         }
@@ -456,7 +450,6 @@
         return div.innerHTML;
     }
     
-    // Filter kategori
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
