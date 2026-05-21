@@ -12,15 +12,12 @@ function showAlert(message, type) {
     setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
 }
 
-// BALIK: rating yang dipilih = 6 - index (karena bintang terbalik di HTML)
 function getRatingValue(name) {
     const selected = document.querySelector(`input[name="${name}"]:checked`);
     if (selected) {
-        const rawValue = parseInt(selected.value);
-        // Balik nilai: 1->5, 2->4, 3->3, 4->2, 5->1
-        const correctValue = 6 - rawValue;
-        console.log(`[DEBUG] ${name} = ${rawValue} -> dibalik jadi ${correctValue}`);
-        return correctValue;
+        const value = parseInt(selected.value);
+        console.log(`[DEBUG] ${name} = ${value}`);
+        return value;
     }
     return 0;
 }
@@ -72,10 +69,10 @@ function resetForm() {
     });
 }
 
-// Update warna bintang (normal: bintang kiri = nilai kecil)
+// Update warna bintang (normal: dari kiri ke kanan)
 function updateStarColors(container, value) {
     const labels = container.querySelectorAll('label');
-    // value 1 = bintang 1, value 5 = bintang 5
+    // value 1 = bintang 1 (paling kiri), value 5 = bintang 5 (paling kanan)
     for (let i = 0; i < labels.length; i++) {
         if (i < value) {
             labels[i].style.color = 'var(--accent)';
@@ -95,7 +92,7 @@ form.addEventListener('submit', async (e) => {
     const rating4 = getRatingValue('rating_interaksi');
     const rating5 = getRatingValue('rating_keadilan');
     
-    console.log('Rating setelah dibalik:', rating1, rating2, rating3, rating4, rating5);
+    console.log('Rating yang dipilih:', rating1, rating2, rating3, rating4, rating5);
     
     const data = {
         tanggal: new Date().toLocaleString('id-ID'),
@@ -129,6 +126,7 @@ form.addEventListener('submit', async (e) => {
         resetForm();
         
     } catch (error) {
+        console.error('Error:', error);
         showAlert('Gagal mengirim!', 'error');
     } finally {
         submitBtn.disabled = false;
@@ -136,7 +134,7 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-// ============= RATING STARS =============
+// ============= RATING STARS NORMAL (KIRI KE KANAN) =============
 document.querySelectorAll('.stars').forEach(starsContainer => {
     const radioButtons = starsContainer.querySelectorAll('input');
     const labels = starsContainer.querySelectorAll('label');
@@ -145,10 +143,9 @@ document.querySelectorAll('.stars').forEach(starsContainer => {
     radioButtons.forEach((radio) => {
         radio.addEventListener('change', function() {
             if (this.checked) {
-                const rawValue = parseInt(this.value);
-                const correctValue = 6 - rawValue; // BALIK nilai untuk tampilan
-                updateStarColors(starsContainer, correctValue);
-                console.log(`${this.name} = ${rawValue} -> tampil sebagai ${correctValue} bintang`);
+                const value = parseInt(this.value);
+                updateStarColors(starsContainer, value);
+                console.log(`${this.name} = ${value}`);
             }
         });
     });
@@ -156,6 +153,7 @@ document.querySelectorAll('.stars').forEach(starsContainer => {
     // Hover effect (dari kiri ke kanan)
     labels.forEach((label, idx) => {
         label.addEventListener('mouseenter', () => {
+            // Warna bintang dari kiri sampai yang di-hover
             for (let i = 0; i <= idx; i++) {
                 labels[i].style.color = 'var(--accent)';
             }
@@ -167,9 +165,7 @@ document.querySelectorAll('.stars').forEach(starsContainer => {
         label.addEventListener('mouseleave', () => {
             const checked = starsContainer.querySelector('input:checked');
             if (checked) {
-                const rawValue = parseInt(checked.value);
-                const correctValue = 6 - rawValue;
-                updateStarColors(starsContainer, correctValue);
+                updateStarColors(starsContainer, parseInt(checked.value));
             } else {
                 labels.forEach(l => l.style.color = '#cbd5e1');
             }
@@ -182,4 +178,4 @@ document.querySelectorAll('.stars label').forEach(label => {
     label.style.color = '#cbd5e1';
 });
 
-console.log('penilaian.js loaded - bintang sudah normal (klik kiri = 1, klik kanan = 5)');
+console.log('penilaian.js loaded - bintang NORMAL dari kiri ke kanan (klik kiri = 1, klik kanan = 5)');
