@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aspirasi Mahasiswa - BPM FPIK UBT</title>
-    <link rel="stylesheet" href="/asset/style.css">
-    <link rel="stylesheet" href="/asset/bg-about.css">
+    <link rel="stylesheet" href="../../asset/style.css">
+    <link rel="stylesheet" href="../../asset/bg-about.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="/asset/image-asset/logo-bpm.png">
+    <link rel="icon" href="../../asset/image-asset/logo-bpm.png">
     <style>
         :root {
             --primary: #0F4C81;
@@ -25,7 +25,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(rgba(31, 31, 34, 0.272), rgba(214, 213, 255, 0.272)), url('/asset/image-asset/bg-hero.jpg');
+            background: linear-gradient(rgba(31, 31, 34, 0.272), rgba(214, 213, 255, 0.272)), url('../../asset/image-asset/bg-hero.jpg');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -293,23 +293,23 @@
 <nav class="navbar">
     <div class="navbar-logo">
         <div class="logo-icon">
-            <img src="/asset/image-asset/logo-bpm.png" alt="Logo BPM">
+            <img src="../../asset/image-asset/logo-bpm.png" alt="Logo BPM">
         </div>
         <h1>BPM FPIK UBT</h1>
     </div>
     <div class="nav-menu">
-        <a href="/index.html">Beranda</a>
-        <a href="/html/about.html">Tentang</a>
+        <a href="../../index.html">Beranda</a>
+        <a href="../about.html">Tentang</a>
         <div class="dropdown">
             <button class="dropbtn">More</button>
             <div class="dropdown-content">
-                <a href="/html/dashboard/penilaian.html">Penilaian Dosen</a>
-                <a href="/html/dashboard/aspirasi.html">Aspirasi</a>
-                <a href="/qr-generator.html">QR Code</a>
-                <a href="/html/dashboard/sejarah.html">Sejarah</a>
-                <a href="/html/dashboard/author.html">Pengembang</a>
-                <a href="/html/dashboard/download-surat-bimbingan.html">Berkas Perkuliahan</a>
-                <a href="/html/dashboard/administrasi.html">Administrasi</a>
+                <a href="penilaian.html">Penilaian Dosen</a>
+                <a href="aspirasi.html">Aspirasi</a>
+                <a href="../../qr-generator.html">QR Code</a>
+                <a href="sejarah.html">Sejarah</a>
+                <a href="author.html">Pengembang</a>
+                <a href="download-surat-bimbingan.html">Berkas Perkuliahan</a>
+                <a href="administrasi.html">Administrasi</a>
             </div>
         </div>
     </div>
@@ -365,27 +365,21 @@
 </footer>
 
 <script>
-    // ============= KONFIGURASI =============
-    // Ganti dengan URL Web App Google Apps Script Anda setelah deploy
     const API_URL = 'https://script.google.com/macros/s/AKfycbzElA-8pOdO9SLZU9SUHbuP2wINi1va1Z8XIFNK9htVnv6OnSy7xmUIrCR0EKGEcbXPzA/exec';
     
     const form = document.getElementById('aspirasiForm');
     const alertBox = document.getElementById('alertBox');
     const submitBtn = document.getElementById('submitBtn');
     
-    // Fungsi untuk menampilkan alert
     function showAlert(message, type) {
         alertBox.textContent = message;
         alertBox.className = `alert ${type}`;
-        
-        // Auto hide setelah 5 detik
         setTimeout(() => {
             alertBox.style.display = 'none';
             alertBox.className = 'alert';
         }, 5000);
     }
     
-    // Fungsi untuk reset form
     function resetForm() {
         document.getElementById('nama').value = '';
         document.getElementById('nim').value = '';
@@ -393,17 +387,14 @@
         document.getElementById('pesan').value = '';
     }
     
-    // Handle submit form
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Ambil nilai dari form
         const nama = document.getElementById('nama').value.trim();
         const nim = document.getElementById('nim').value.trim();
         const kategori = document.getElementById('kategori').value;
         const pesan = document.getElementById('pesan').value.trim();
         
-        // Validasi
         if (!nama) {
             showAlert('Harap isi nama lengkap Anda', 'error');
             document.getElementById('nama').focus();
@@ -433,19 +424,15 @@
             return;
         }
         
-        // Nonaktifkan tombol submit
         submitBtn.disabled = true;
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Mengirim...';
         
         try {
-            // Kirim data ke Google Apps Script
-            const response = await fetch(API_URL, {
+            await fetch(API_URL, {
                 method: 'POST',
                 mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams({
                     action: 'kirimAspirasi',
                     nama: nama,
@@ -455,15 +442,12 @@
                 })
             });
             
-            // Karena mode no-cors, kita asumsikan berhasil
             showAlert('Terima kasih! Aspirasi Anda telah terkirim. Kami akan segera menindaklanjutinya.', 'success');
             resetForm();
-            
         } catch (error) {
             console.error('Error:', error);
             showAlert('Gagal mengirim aspirasi. Silakan cek koneksi internet Anda dan coba lagi.', 'error');
         } finally {
-            // Aktifkan kembali tombol submit
             submitBtn.disabled = false;
             submitBtn.textContent = originalText;
         }
