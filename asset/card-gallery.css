@@ -1,0 +1,252 @@
+/* ========== CARD GALLERY STYLES (KHUSUS INDEX.HTML) ========== */
+/* Hanya berlaku untuk card yang memiliki class .gallery-card */
+.gallery-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-card .card-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+/* Efek hover zoom */
+.gallery-card:hover .card-img {
+    transform: scale(1.05);
+}
+
+/* Animasi saat ganti gambar */
+.card-img-changing {
+    animation: imageSlide 0.3s ease-in-out;
+}
+
+@keyframes imageSlide {
+    0% { 
+        opacity: 0.5; 
+        transform: scale(0.95);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+}
+
+/* Counter indikator gambar */
+.image-counter {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    padding: 4px 10px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    z-index: 10;
+    font-family: monospace;
+}
+
+.counter-current {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.counter-sep {
+    margin: 0 2px;
+    opacity: 0.7;
+}
+
+.counter-total {
+    opacity: 0.7;
+}
+
+/* Tooltip indikator area klik */
+.gallery-card::before {
+    content: '◀  Klik kiri/kanan untuk ganti gambar  ▶';
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.75);
+    color: white;
+    font-size: 10px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 10;
+    white-space: nowrap;
+    font-family: 'Poppins', sans-serif;
+}
+
+.gallery-card:hover::before {
+    opacity: 1;
+}
+
+/* Button untuk gallery card */
+.gallery-card .card-btn {
+    cursor: pointer;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.gallery-card .card-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gallery-card::before {
+        content: '◀  Ketuk tepi kiri/kanan untuk ganti gambar  ▶';
+        font-size: 8px;
+        white-space: nowrap;
+        bottom: 50px;
+    }
+    
+    .image-counter {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+}
+
+/* ========== MODAL LARGE WITH GALLERY ========== */
+.modal-large {
+    max-width: 900px !important;
+}
+
+.modal-gallery-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+#modal-main-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    font-size: 30px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.modal-nav:hover {
+    background: var(--primary);
+}
+
+.modal-nav.prev {
+    left: 10px;
+}
+
+.modal-nav.next {
+    right: 10px;
+}
+
+.modal-counter {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.7);
+    padding: 5px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 14px;
+    font-family: monospace;
+}
+
+.modal-thumbnails {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.modal-thumb {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.modal-thumb:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.modal-thumb.active {
+    opacity: 1;
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #modal-main-img {
+        height: 250px;
+    }
+    
+    .modal-nav {
+        font-size: 20px;
+        padding: 5px 10px;
+    }
+    
+    .modal-thumb {
+        width: 60px;
+        height: 45px;
+    }
+}
+
+/* Hover efek untuk card */
+.gallery-card {
+    transition: all 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+}
+
+.gallery-card:hover .card-img {
+    transform: scale(1.02);
+}

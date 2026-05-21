@@ -1,0 +1,24 @@
+:root {
+    --primary: #0F4C81;
+    --secondary: #1B9AAA;
+    --accent: #F4B942;
+    --background: #F5F9FC;
+    --text: #1E293B;
+}
+
+body {
+    background: linear-gradient(rgba(31, 31, 34, 0.272), rgba(214, 213, 255, 0.272)), url('/asset/image-asset/bg-hero.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: blur(3px);
+    transition: all 0.5s ease-in-out;
+}
+
+
+.section-title {
+    color: var(--background);
+    /* -webkit-text-stroke: 1px var(--primary); */
+}
+

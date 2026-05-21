@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPM FPIK UBT | Beranda</title>
+<link rel="stylesheet" href="asset/style.css">
+<link rel="stylesheet" href="asset/card-gallery.css">
+<link rel="icon" href="image/logo-bpm.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+<div class="logo-area">
+    <div class="logo-wrapper">
+        <div class="logo-icon">
+            <img src="asset/image-asset/logo-bpm.png" alt="Logo BPM" onerror="this.src='https://via.placeholder.com/40x40?text=BPM'">
+        </div>
+        <h1>BPM FPIK UBT</h1>
+    </div>
+</div>
+<div class="nav-menu">
+<a href="#">Beranda</a>
+<a href="html/about.html">Tentang</a>
+<a href="html/dashboard/dashboard.html">Dashboard</a>
+</div>
+</nav>
+
+<header class="hero">
+<div class="hero-content">
+<h2>Untuk FPIK Kami Ada.</h2>
+<p>Website resmi Badan Perwakilan Mahasiswa Fakultas Perikanan dan Ilmu Kelautan Universitas Borneo Tarakan.</p>
+<a href="#kegiatan" class="btn">Lihat Kegiatan</a>
+</div>
+</header>
+
+<section class="section" id="kegiatan">
+<h2 class="section-title">Kegiatan BPM</h2>
+<div class="card-container">
+
+<!-- Card 1 - Upgrading Ormawa -->
+<div class="gallery-card" data-card-id="0" data-auto-slide="3000">
+    <img src="asset/image-asset/rapat-senat.jpeg" class="card-img" alt="Upgrading" id="card-img-0">
+    <div class="card-content">
+        <h3>Kegiatan Upgrading Ormawa</h3>
+        <p>Kegiatan peningkatan kapasitas organisasi mahasiswa FPIK UBT.</p>
+        <div class="image-counter">
+            <span class="counter-current" id="counter-current-0">1</span>
+            <span class="counter-sep">/</span>
+            <span class="counter-total" id="counter-total-0">4</span>
+        </div>
+        <button class="card-btn" onclick="openModal('aspirasi')">Selengkapnya</button>
+    </div>
+</div>
+
+<!-- Card 2 - Pengawasan Organisasi -->
+<div class="gallery-card" data-card-id="1" data-auto-slide="3000">
+    <img src="asset/image-asset/img-pengawasan.jpeg" class="card-img" alt="Pengawasan" id="card-img-1">
+    <div class="card-content">
+        <h3>Pengawasan Organisasi</h3>
+        <p>BPM melakukan pengawasan terhadap kegiatan organisasi mahasiswa.</p>
+        <div class="image-counter">
+            <span class="counter-current" id="counter-current-1">1</span>
+            <span class="counter-sep">/</span>
+            <span class="counter-total" id="counter-total-1">4</span>
+        </div>
+        <button class="card-btn" onclick="openModal('pengawasan')">Selengkapnya</button>
+    </div>
+</div>
+
+<!-- Card 3 - Kegiatan Sosial -->
+<div class="gallery-card" data-card-id="2" data-auto-slide="3000">
+    <img src="asset/image-asset/sosial-sop.jpeg" class="card-img" alt="Sosial" id="card-img-2">
+    <div class="card-content">
+        <h3>Kegiatan Sosial</h3>
+        <p>Kegiatan sosial mahasiswa untuk mempererat solidaritas FPIK UBT.</p>
+        <div class="image-counter">
+            <span class="counter-current" id="counter-current-2">1</span>
+            <span class="counter-sep">/</span>
+            <span class="counter-total" id="counter-total-2">4</span>
+        </div>
+        <button class="card-btn" onclick="openModal('sosial')">Selengkapnya</button>
+    </div>
+</div>
+
+<!-- Card 4 - Rapat Pleno BPM -->
+<div class="gallery-card" data-card-id="3" data-auto-slide="3000">
+    <img src="https://picsum.photos/id/42/500/300" class="card-img" alt="Rapat Pleno" id="card-img-3">
+    <div class="card-content">
+        <h3>Rapat Pleno BPM</h3>
+        <p>Rapat koordinasi internal BPM untuk membahas program kerja dan evaluasi.</p>
+        <div class="image-counter">
+            <span class="counter-current" id="counter-current-3">1</span>
+            <span class="counter-sep">/</span>
+            <span class="counter-total" id="counter-total-3">4</span>
+        </div>
+        <button class="card-btn" onclick="openModal('rapat')">Selengkapnya</button>
+    </div>
+</div>
+
+<!-- Card 5 - Pelantikan Pengurus -->
+<div class="gallery-card" data-card-id="4" data-auto-slide="3000">
+    <img src="https://picsum.photos/id/100/500/300" class="card-img" alt="Pelantikan" id="card-img-4">
+    <div class="card-content">
+        <h3>Pelantikan Pengurus</h3>
+        <p>Serah terima jabatan dan pelantikan pengurus BPM periode baru.</p>
+        <div class="image-counter">
+            <span class="counter-current" id="counter-current-4">1</span>
+            <span class="counter-sep">/</span>
+            <span class="counter-total" id="counter-total-4">4</span>
+        </div>
+        <button class="card-btn" onclick="openModal('pelantikan')">Selengkapnya</button>
+    </div>
+</div>
+
+<!-- Card 6 - Studi Banding -->
+<div class="gallery-card" data-card-id="5" data-auto-slide="3000">
+    <img src="https://picsum.photos/id/91/500/300" class="card-img" alt="Studi Banding" id="card-img-5">
+    <div class="card-content">
+        <h3>Studi Banding</h3>
+        <p>Kunjungan dan studi banding ke lembaga kemahasiswaan universitas lain.</p>
+        <div class="image-counter">
+            <span class="counter-current" id="counter-current-5">1</span>
+            <span class="counter-sep">/</span>
+            <span class="counter-total" id="counter-total-5">4</span>
+        </div>
+        <button class="card-btn" onclick="openModal('studi')">Selengkapnya</button>
+    </div>
+</div>
+
+</div>
+</section>
+
+<!-- Modal Popup dengan Gallery -->
+<div id="myModal" class="modal">
+<div class="modal-content modal-large">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="modal-body">
+        <div class="modal-gallery-container">
+            <button class="modal-nav prev" onclick="changeModalImage(-1)">❮</button>
+            <img id="modal-main-img" src="" alt="Gallery Image">
+            <button class="modal-nav next" onclick="changeModalImage(1)">❯</button>
+            <div class="modal-counter">
+                <span id="modal-counter-current">1</span> / <span id="modal-counter-total">1</span>
+            </div>
+            <div class="modal-thumbnails" id="modal-thumbnails"></div>
+        </div>
+        <div id="modal-description"></div>
+    </div>
+</div>
+</div>
+
+<footer>
+<p>© 2026 BPM FPIK UBT</p>
+<br><p>Versi 0.1.4 | Home</p>
+</footer>
+
+<script>
+// ========== ARRAY GAMBAR UNTUK SETIAP KEGIATAN ==========
+const kegiatanImages = {
+    0: {
+        title: 'Kegiatan Upgrading Ormawa',
+        images: [
+            'asset/image-asset/img-pwsn.jpeg',
+            'asset/image-asset/upgrading-image.jpeg',
+            'asset/image-asset/pemateri-jjn.jpg',
+            'asset/image-asset/foto-si-tiker.jpeg'
+        ],
+        deskripsi: 'BPM melaksanakan tugas sebagai pengawasan di kegiatan upgrading yang dilaksanakan oleh ormawa BEM FPIK UBT, pada hari Sabtu, 11 April 2026 di ruangan 303 dan 304 lantai 3 FPIK UBT.',
+        tujuan: 'Meningkatkan kapasitas, kualitas, dan profesionalisme pengurus ORMAWA FPIK UBT.',
+        kontak: 'Email: bpmfpikubt9@gmail.com'
+    },
+    1: {
+        title: 'Pengawasan Organisasi Mahasiswa',
+        images: [
+            'asset/image-asset/img-pengawasan.jpeg',
+            'asset/image-asset/sosial-ra.jpeg',
+            'asset/image-asset/upgrading-image.jpeg',
+            'asset/image-asset/sosial-sop.jpeg'
+        ],
+        deskripsi: 'BPM melaksanakan tugasnya sebagai pengawas kebijakan antar ORMAWA, dalam setiap kegiatan sehingga dapat di evaluasi atau memperbaiki kinerja kedepannya (Sukardi, S.Pi., 2026) ',
+        tujuan: 'Memastikan transparansi anggaran dan mengawasi program kerja.',
+        kontak: 'Email: bpmfpikubt9@gmail.com'
+    },
+    2: {
+        title: 'Kegiatan Sosial Mahasiswa',
+        images: [
+            'asset/image-asset/akua-ks.jpeg',
+            'asset/image-asset/img-pwsn.jpeg',
+            'https://picsum.photos/id/30/500/300',
+            'https://picsum.photos/id/31/500/300'
+        ],
+        deskripsi: 'Kegiatan sosial yang diselenggarakan BPM bersama seluruh elemen FPIK UBT.',
+        tujuan: 'Mempererat solidaritas dan kepedulian sosial mahasiswa.',
+        kontak: 'Email: bpmfpikubt9@gmail.com'
+    },
+    3: {
+        title: 'Rapat Pleno BPM',
+        images: [
+            'https://picsum.photos/id/42/500/300',
+            'https://picsum.photos/id/43/500/300',
+            'https://picsum.photos/id/44/500/300',
+            'https://picsum.photos/id/45/500/300'
+        ],
+        deskripsi: 'Rapat pleno merupakan forum tertinggi BPM yang dihadiri oleh seluruh komisioner.',
+        tujuan: 'Membahas program kerja, evaluasi kinerja, dan pengambilan keputusan strategis.',
+        kontak: 'Email: bpmfpikubt9@gmail.com'
+    },
+    4: {
+        title: 'Pelantikan Pengurus ORMAWA 2025-2026',
+        images: [
+            'asset/image-asset/akua-pl15.jpeg',
+            'https://picsum.photos/id/101/500/300',
+            'https://picsum.photos/id/102/500/300',
+            'https://picsum.photos/id/103/500/300'
+        ],
+        deskripsi: 'Acara serah terima jabatan dan pelantikan pengurus BPM FPIK UBT periode baru.',
+        tujuan: 'Resmi menyerahkan amanah kepengurusan dan memperkenalkan pengurus baru.',
+        kontak: 'Email: bpmfpikubt9@gmail.com'
+    },
+    5: {
+        title: 'Studi Banding BPM',
+        images: [
+            'https://picsum.photos/id/91/500/300',
+            'https://picsum.photos/id/92/500/300',
+            'https://picsum.photos/id/93/500/300',
+            'https://picsum.photos/id/94/500/300'
+        ],
+        deskripsi: 'Kunjungan dan studi banding BPM FPIK UBT ke lembaga kemahasiswaan di universitas lain.',
+        tujuan: 'Berbagi pengalaman dan best practice dalam pengelolaan organisasi.',
+        kontak: 'Email: bpmfpikubt9@gmail.com'
+    }
+};
+
+// State untuk setiap card
+let currentImageIndex = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+let autoSlideIntervals = {0: null, 1: null, 2: null, 3: null, 4: null, 5: null};
+let isHovering = {0: false, 1: false, 2: false, 3: false, 4: false, 5: false};
+
+// State untuk modal
+let currentModalCardId = 0;
+let currentModalImageIndex = 0;
+
+// Inisialisasi counter total
+for (let i = 0; i < 6; i++) {
+    const totalSpan = document.getElementById(`counter-total-${i}`);
+    if (totalSpan && kegiatanImages[i]) {
+        totalSpan.textContent = kegiatanImages[i].images.length;
+    }
+}
+
+// Fungsi mengganti gambar card
+function changeCardImage(cardId, direction) {
+    const images = kegiatanImages[cardId].images;
+    if (!images) return;
+    
+    if (direction === 'next') {
+        currentImageIndex[cardId] = (currentImageIndex[cardId] + 1) % images.length;
+    } else {
+        currentImageIndex[cardId] = (currentImageIndex[cardId] - 1 + images.length) % images.length;
+    }
+    
+    const imgElement = document.getElementById(`card-img-${cardId}`);
+    const counterCurrent = document.getElementById(`counter-current-${cardId}`);
+    
+    if (imgElement) {
+        imgElement.classList.add('card-img-changing');
+        setTimeout(() => {
+            imgElement.src = images[currentImageIndex[cardId]];
+        }, 50);
+        setTimeout(() => {
+            imgElement.classList.remove('card-img-changing');
+        }, 300);
+    }
+    
+    if (counterCurrent) {
+        counterCurrent.textContent = currentImageIndex[cardId] + 1;
+    }
+}
+
+// Fungsi auto slide
+function startAutoSlide(cardId) {
+    if (autoSlideIntervals[cardId]) clearInterval(autoSlideIntervals[cardId]);
+    autoSlideIntervals[cardId] = setInterval(() => {
+        if (!isHovering[cardId]) {
+            changeCardImage(cardId, 'next');
+        }
+    }, 3000);
+}
+
+function stopAutoSlide(cardId) {
+    if (autoSlideIntervals[cardId]) {
+        clearInterval(autoSlideIntervals[cardId]);
+        autoSlideIntervals[cardId] = null;
+    }
+}
+
+// Event listener untuk setiap card
+document.querySelectorAll('.gallery-card').forEach((card, idx) => {
+    let clickTimeout;
+    
+    // Auto slide saat hover
+    card.addEventListener('mouseenter', () => {
+        isHovering[idx] = true;
+        stopAutoSlide(idx);
+        startAutoSlide(idx);
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        isHovering[idx] = false;
+    });
+    
+    // Klik untuk ganti gambar manual
+    card.addEventListener('click', (e) => {
+        if (e.target.classList.contains('card-btn')) return;
+        
+        const rect = card.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const cardWidth = rect.width;
+        
+        if (clickX < cardWidth / 3) {
+            changeCardImage(idx, 'prev');
+        } else if (clickX > (cardWidth * 2 / 3)) {
+            changeCardImage(idx, 'next');
+        } else {
+            if (clickTimeout) {
+                clearTimeout(clickTimeout);
+                clickTimeout = null;
+                if (currentImageIndex[idx] !== 0) {
+                    currentImageIndex[idx] = 0;
+                    const imgElement = document.getElementById(`card-img-${idx}`);
+                    const counterCurrent = document.getElementById(`counter-current-${idx}`);
+                    if (imgElement) {
+                        imgElement.classList.add('card-img-changing');
+                        setTimeout(() => {
+                            imgElement.src = kegiatanImages[idx].images[0];
+                        }, 50);
+                        setTimeout(() => {
+                            imgElement.classList.remove('card-img-changing');
+                        }, 300);
+                    }
+                    if (counterCurrent) counterCurrent.textContent = '1';
+                }
+            } else {
+                clickTimeout = setTimeout(() => { clickTimeout = null; }, 250);
+            }
+        }
+    });
+    
+    // Start auto slide
+    startAutoSlide(idx);
+});
+
+// ========== FUNGSI MODAL DENGAN GALLERY ==========
+let currentModalData = null;
+
+function openModal(type) {
+    let cardId = -1;
+    if (type === 'aspirasi') cardId = 0;
+    else if (type === 'pengawasan') cardId = 1;
+    else if (type === 'sosial') cardId = 2;
+    else if (type === 'rapat') cardId = 3;
+    else if (type === 'pelantikan') cardId = 4;
+    else if (type === 'studi') cardId = 5;
+    
+    if (cardId === -1) return;
+    
+    currentModalCardId = cardId;
+    currentModalData = kegiatanImages[cardId];
+    currentModalImageIndex = currentImageIndex[cardId];
+    
+    updateModalContent();
+    
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+}
+
+function updateModalContent() {
+    if (!currentModalData) return;
+    
+    const mainImg = document.getElementById('modal-main-img'); 
+    const counterCurrent = document.getElementById('modal-counter-current');
+    const counterTotal = document.getElementById('modal-counter-total');
+    const descriptionDiv = document.getElementById('modal-description');
+    const thumbnailsDiv = document.getElementById('modal-thumbnails');
+    
+    // Update gambar utama
+    mainImg.src = currentModalData.images[currentModalImageIndex];
+    
+    // Update counter
+    counterCurrent.textContent = currentModalImageIndex + 1;
+    counterTotal.textContent = currentModalData.images.length;
+    
+    // Update deskripsi
+    descriptionDiv.innerHTML = `
+        <h2 style="color:#0F4C81; margin-bottom:20px;">${currentModalData.title}</h2>
+        <h3 style="color:#1B9AAA; margin-bottom:10px;">Deskripsi Kegiatan</h3>
+        <p style="line-height:1.8; margin-bottom:20px;">${currentModalData.deskripsi}</p>
+        <h3 style="color:#1B9AAA; margin-bottom:10px;">Tujuan Kegiatan</h3>
+        <p style="line-height:1.8; margin-bottom:20px;">${currentModalData.tujuan}</p>
+        <h3 style="color:#1B9AAA; margin-bottom:10px;">Kontak</h3>
+        <p>${currentModalData.kontak}</p>
+    `;
+    
+    // Update thumbnails
+    thumbnailsDiv.innerHTML = '';
+    currentModalData.images.forEach((img, idx) => {
+        const thumb = document.createElement('img');
+        thumb.src = img;
+        thumb.classList.add('modal-thumb');
+        if (idx === currentModalImageIndex) thumb.classList.add('active');
+        thumb.onclick = () => {
+            currentModalImageIndex = idx;
+            updateModalContent();
+        };
+        thumbnailsDiv.appendChild(thumb);
+    });
+}
+
+function changeModalImage(direction) {
+    if (!currentModalData) return;
+    
+    currentModalImageIndex = (currentModalImageIndex + direction + currentModalData.images.length) % currentModalData.images.length;
+    updateModalContent();
+}
+
+function closeModal() {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById("myModal");
+    if (event.target == modal) closeModal();
+}
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") closeModal();
+    if (event.key === "ArrowLeft" && document.getElementById("myModal").style.display === "block") {
+        changeModalImage(-1);
+    }
+    if (event.key === "ArrowRight" && document.getElementById("myModal").style.display === "block") {
+        changeModalImage(1);
+    }
+});
+</script>
+</body>
+</html>

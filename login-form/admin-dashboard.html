@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BPM FPIK UBT</title>
+    <link rel="stylesheet" href="/asset/style.css">
+    <link rel="stylesheet" href="/asset/bg-about.css">
+    <link rel="stylesheet" href="/asset/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/asset/image-asset/logo-bpm.png">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-logo">
+        <div class="logo-icon">
+            <img src="/asset/image-asset/logo-bpm.png" alt="Logo BPM">
+        </div>
+        <h1>BPM FPIK UBT</h1>
+    </div>
+    <div class="nav-menu">
+        <a href="/index.html">Beranda</a>
+        <a href="/html/about.html">Tentang</a>
+        <a href="/html/dashboard/dashboard.html">Dashboard User</a>
+        <a href="#" class="admin-badge">Admin Panel</a>
+    </div>
+</nav>
+
+<div class="tab-container">
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('anggota')">Anggota BPM</button>
+        <button class="tab-btn" onclick="switchTab('kegiatan')">Foto Kegiatan</button>
+        <button class="tab-btn" onclick="switchTab('aspirasi')">Aspirasi</button>
+        <button class="tab-btn" onclick="switchTab('berkas')">Berkas</button>
+    </div>
+
+    <!-- TAB 1: ANGGOTA BPM -->
+    <div id="tab-anggota" class="tab-pane active">
+        <h2 class="section-title">Struktur Kepengurusan BPM</h2>
+        <p class="section-subtitle">Kelola foto dan data anggota BPM FPIK UBT</p>
+        <div id="memberGrid" class="card-container">
+            <div class="loading-state">Memuat data anggota...</div>
+        </div>
+    </div>
+
+    <!-- TAB 2: FOTO KEGIATAN -->
+    <div id="tab-kegiatan" class="tab-pane">
+        <h2 class="section-title">Galeri Foto Kegiatan</h2>
+        <p class="section-subtitle">Kelola foto untuk setiap kegiatan yang tampil di halaman Beranda</p>
+        <div id="kegiatanGrid" class="card-container">
+            <div class="loading-state">Memuat data kegiatan...</div>
+        </div>
+    </div>
+
+    <!-- TAB 3: ASPIRASI MAHASISWA -->
+    <div id="tab-aspirasi" class="tab-pane">
+        <h2 class="section-title">Aspirasi Mahasiswa</h2>
+        <p class="section-subtitle">Daftar aspirasi yang disampaikan mahasiswa FPIK UBT</p>
+        <div id="aspirasiGrid" class="aspirasi-container">
+            <div class="loading-state">Memuat aspirasi...</div>
+        </div>
+    </div>
+
+    <!-- TAB 4: BERKAS PERKULIAHAN -->
+    <div id="tab-berkas" class="tab-pane">
+        <h2 class="section-title">Kelola Berkas Perkuliahan</h2>
+        <p class="section-subtitle">Upload dan kelola file untuk mahasiswa download</p>
+        
+        <div class="berkas-upload-area">
+            <h3>Upload Berkas Baru</h3>
+            <div class="form-group">
+                <label>Judul Berkas</label>
+                <input type="text" id="berkasJudul" placeholder="Contoh: Surat Bimbingan Skripsi">
+            </div>
+            <div class="form-group">
+                <label>Kategori</label>
+                <select id="berkasKategori">
+                    <option value="Bimbingan">Bimbingan</option>
+                    <option value="Surat">Surat</option>
+                    <option value="Formulir">Formulir</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Deskripsi</label>
+                <textarea id="berkasDeskripsi" rows="2" placeholder="Deskripsi singkat tentang berkas ini"></textarea>
+            </div>
+            <div class="file-drop-area" onclick="document.getElementById('berkasFile').click()">
+                <p>Klik untuk pilih file (PDF, DOC, XLS, maks 10MB)</p>
+                <input type="file" id="berkasFile" style="display:none" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.png,.zip">
+            </div>
+            <button class="btn-primary" onclick="uploadBerkasBaru()" style="margin-top: 15px;">Upload Berkas</button>
+        </div>
+        
+        <div class="berkas-list">
+            <h3 style="margin-bottom: 15px; color: white;">Daftar Berkas</h3>
+            <div id="berkasListContainer">Memuat...</div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 BPM FPIK UBT</p>
+    <p style="font-size: 0.7rem; margin-top: 5px;">Admin Dashboard | Version 0.1.4</p>
+</footer>
+
+<div id="toast" class="toast"></div>
+
+<script src="/asset/js/admin.js"></script>
+</body>
+</html>

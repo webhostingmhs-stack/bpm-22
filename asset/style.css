@@ -1,0 +1,522 @@
+:root {
+    --primary: #0F4C81;
+    --secondary: #1B9AAA;
+    --accent: #F4B942;
+    --background: #F5F9FC;
+    --text: #1E293B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+/* ========== NAVBAR STYLES ========== */
+.navbar {
+    background: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    color: white;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Logo Navbar Styles */
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--background), var(--background));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+    overflow: hidden;
+}
+
+.logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo-wrapper:hover .logo-icon {
+    transform: scale(1.05);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar-logo .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--background), #ffffff);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.navbar-logo .logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.navbar-logo h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.logo-area h1, .navbar h1 {
+    font-size: 1.5rem;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: var(--accent);
+}
+
+/* ========== HERO STYLES ========== */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(0, 45, 84, 0.85), rgba(0, 45, 84, 0.85)), url('image-asset/bg-index.webp');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 40px 20px;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .hero-content h2 {
+        font-size: 4rem;
+    }
+}
+
+.hero-content p {
+    max-width: 700px;
+    line-height: 1.8;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    background: var(--accent);
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: #e0a82b;
+    transform: scale(1.05);
+}
+
+/* ========== SECTION STYLES ========== */
+.section {
+    padding: 70px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    margin: 12px auto 0;
+    border-radius: 4px;
+}
+
+/* ========== CARD CONTAINER ========== */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* ========== CARD DASAR (UNTUK SEMUA CARD) ========== */
+.card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12);
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-content h3 {
+    margin-bottom: 12px;
+    color: var(--primary);
+}
+
+.card-content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #4a5568;
+}
+
+/* ========== FOOTER STYLES ========== */
+footer {
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+/* ========== DROPDOWN MENU STYLES ========== */
+.nav-menu {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: var(--accent);
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+    background: transparent;
+    color: white;
+    padding: 0;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.dropbtn:hover {
+    color: var(--accent);
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    z-index: 1;
+    right: 0;
+    top: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+    color: var(--text);
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    margin: 0;
+    transition: all 0.2s;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--background);
+    color: var(--primary);
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Tambahan icon untuk dropdown */
+.dropbtn::after {
+    content: " ▼";
+    font-size: 10px;
+}
+
+/* Responsive dropdown */
+@media (max-width: 768px) {
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background: transparent;
+        margin-top: 5px;
+    }
+    
+    .dropdown-content a {
+        color: white;
+        padding: 8px 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .dropdown-content a:hover {
+        background: rgba(255,255,255,0.1);
+        color: var(--accent);
+    }
+    
+    .dropbtn::after {
+        content: " ▼";
+    }
+    
+    .dropdown:hover .dropdown-content {
+        display: none;
+    }
+    
+    /* Untuk mobile, dropdown aktif saat klik */
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 5%;
+    }
+    
+    .nav-menu a {
+        margin: 0 12px;
+    }
+    
+    .section {
+        padding: 50px 5%;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .card-container {
+        gap: 20px;
+    }
+}
+
+/* ========== MODAL STYLES ========== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    margin: 3% auto;
+    padding: 0;
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: slideDown 0.3s;
+    overflow-y: auto;
+    position: relative;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    position: sticky;
+    top: 10px;
+    right: 20px;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+    background: white;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 10px 15px 0 0;
+    transition: all 0.3s;
+    z-index: 1001;
+}
+
+.close:hover { 
+    color: red;
+    transform: scale(1.1);
+}
+
+#modal-body, #member-modal-body {
+    padding: 20px 30px 30px 30px;
+    max-height: calc(85vh - 50px);
+    overflow-y: auto;
+}
+
+#modal-body h2, #member-modal-body h2 {
+    font-size: 1.8rem;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#modal-body h3, #member-modal-body h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#modal-body ul, #modal-body p,
+#member-modal-body ul, #member-modal-body p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+#modal-body ul, #member-modal-body ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+/* Scrollbar styling */
+#modal-body::-webkit-scrollbar,
+#member-modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+#modal-body::-webkit-scrollbar-track,
+#member-modal-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#modal-body::-webkit-scrollbar-thumb,
+#member-modal-body::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+#modal-body::-webkit-scrollbar-thumb:hover,
+#member-modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    #modal-body, #member-modal-body {
+        padding: 15px 20px 20px 20px;
+    }
+    
+    #modal-body h2, #member-modal-body h2 {
+        font-size: 1.4rem;
+    }
+}

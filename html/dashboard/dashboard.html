@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BPM FPIK UBT</title>
+    <link rel="stylesheet" href="/asset/style.css">
+    <link rel="stylesheet" href="/asset/dashboard.css">
+    <link rel="stylesheet" href="/asset/bg-about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/asset/image-asset/logo-bpm.png">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-logo">
+        <div class="logo-icon">
+            <img src="/asset/image-asset/logo-bpm.png" alt="Logo BPM">
+        </div>
+        <h1>BPM FPIK UBT</h1>
+    </div>
+    <div class="nav-menu">
+        <a href="/index.html">Beranda</a>
+        <a href="/html/about.html">Tentang</a>
+        <div class="dropdown">
+            <button class="dropbtn">More</button>
+            <div class="dropdown-content">
+                <a href="/html/dashboard/penilaian.html">Penilaian Dosen</a>
+                <a href="/html/dashboard/aspirasi.html">Aspirasi</a>
+                <a href="/qr-generator.html">QR Code</a>
+                <a href="/html/dashboard/sejarah.html">Sejarah</a>
+                <a href="/html/dashboard/author.html">Pengembang</a>
+                <a href="/html/dashboard/download-surat-bimbingan.html">Berkas Perkuliahan</a>
+                <a href="/html/dashboard/administrasi.html">Administrasi</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section" style="padding: 40px 8%;">
+    <div class="dashboard-container">
+        
+        <div class="welcome-section">
+            <h2>Dashboard BPM FPIK UBT</h2>
+            <p>Akses cepat ke fitur BPM dan kumpulan sumber berita perikanan & kelautan terpercaya</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalPenilaian">0</div>
+                <div class="stat-label">Total Penilaian Dosen</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalDosen">0</div>
+                <div class="stat-label">Total Dosen Terdata</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="rataRating">0</div>
+                <div class="stat-label">Rata-rata Rating</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="lastUpdate">-</div>
+                <div class="stat-label">Terakhir Update</div>
+            </div>
+        </div>
+
+        <div class="fitur-grid">
+            <a href="penilaian.html" class="fitur-card"><div class="fitur-icon"></div><h4>Penilaian Dosen</h4><p>Nilai kinerja dosen</p></a>
+            <a href="aspirasi.html" class="fitur-card"><div class="fitur-icon"></div><h4>Aspirasi</h4><p>Sampaikan aspirasi</p></a>
+            <a href="../qr-generator.html" class="fitur-card"><div class="fitur-icon"></div><h4>QR Code</h4><p>Generate QR Code</p></a>
+            <a href="author.html" class="fitur-card"><div class="fitur-icon"></div><h4>Pengembang</h4><p>Info developer</p></a>
+        </div>
+
+        <div class="section-header">
+            <h3>Penilaian Dosen Terbaru</h3>
+            <button class="refresh-btn" onclick="loadDataFromCloud()">Refresh Data</button>
+        </div>
+        <div id="recentPenilaian" class="recent-section"><div class="loading-spinner"><div class="spinner"></div><p>Memuat data penilaian...</p></div></div>
+
+        <div class="section-header"><h3>5 Dosen dengan Rating Tertinggi</h3></div>
+        <div id="topDosen" class="top-dosen-grid"><div class="loading-spinner"><div class="spinner"></div><p>Memuat data dosen...</p></div></div>
+
+        <div class="section-header"><h3>Sumber Berita Perikanan & Kelautan</h3></div>
+        <div class="kategori-grid">
+            <button class="kategori-btn active" data-sumber="semua">Semua</button>
+            <button class="kategori-btn" data-sumber="pemerintah">Pemerintah</button>
+            <button class="kategori-btn" data-sumber="media">Media Nasional</button>
+            <button class="kategori-btn" data-sumber="internasional">Internasional</button>
+        </div>
+        <div id="beritaContainer" class="berita-grid"></div>
+
+        <div class="add-news-section">
+            <h3>Tambah Sumber Berita Sendiri</h3>
+            <div class="add-news-form">
+                <input type="url" id="beritaUrl" placeholder="Masukkan URL website berita">
+                <input type="text" id="beritaJudul" placeholder="Nama sumber berita">
+                <select id="beritaKategori">
+                    <option value="custom">Custom</option>
+                    <option value="pemerintah">Pemerintah</option>
+                    <option value="media">Media Nasional</option>
+                    <option value="internasional">Internasional</option>
+                </select>
+                <button class="btn-add" onclick="tambahSumberBerita()">Tambah Sumber</button>
+            </div>
+        </div>
+
+        <div class="section-header"><h3>Sumber Berita Tersimpan</h3><button class="btn-delete" onclick="hapusSemuaSumber()">Hapus Semua</button></div>
+        <div id="savedBeritaContainer" class="saved-berita-grid"><div class="empty-data">Loading...</div></div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 BPM FPIK UBT</p>
+    <p class="version">Version: 0.1.4 | Dashboard</p>
+</footer>
+
+<script>
+    // Ganti dengan URL Web App Anda
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzElA-8pOdO9SLZU9SUHbuP2wINi1va1Z8XIFNK9htVnv6OnSy7xmUIrCR0EKGEcbXPzA/exec';
+    
+    let penilaianData = [];
+    let sumberCustom = JSON.parse(localStorage.getItem('sumberBeritaCustom') || '[]');
+    let selectedKategori = 'semua';
+
+    async function loadDataFromCloud() {
+        try {
+            const response = await fetch(API_URL + '?action=getData');
+            const result = await response.json();
+            if (result.success && result.data) {
+                penilaianData = result.data;
+                updateStatistik();
+                renderPenilaianTerbaru();
+                renderTopDosen();
+            } else {
+                document.getElementById('recentPenilaian').innerHTML = '<div class="empty-data">Gagal memuat data</div>';
+            }
+        } catch (error) {
+            document.getElementById('recentPenilaian').innerHTML = '<div class="empty-data">Error: Periksa API URL</div>';
+        }
+    }
+
+    function updateStatistik() {
+        const total = penilaianData.length;
+        document.getElementById('totalPenilaian').innerText = total;
+        
+        let totalRating = 0, validCount = 0;
+        const uniqueDosen = new Set();
+        
+        for (const item of penilaianData) {
+            let rating = parseFloat(item.Rata2) || 0;
+            if (rating >= 1 && rating <= 5) {
+                totalRating += rating;
+                validCount++;
+            }
+            if (item.Dosen) uniqueDosen.add(item.Dosen);
+        }
+        
+        document.getElementById('totalDosen').innerText = uniqueDosen.size;
+        let avgRating = validCount > 0 ? (totalRating / validCount).toFixed(1) : "0";
+        document.getElementById('rataRating').innerText = avgRating;
+        document.getElementById('lastUpdate').innerText = new Date().toLocaleTimeString('id-ID');
+    }
+
+    function renderPenilaianTerbaru() {
+        const container = document.getElementById('recentPenilaian');
+        if (penilaianData.length === 0) {
+            container.innerHTML = '<div class="empty-data">Belum ada data penilaian</div>';
+            return;
+        }
+        
+        let html = '<div class="recent-list">';
+        [...penilaianData].reverse().slice(0, 5).forEach(item => {
+            let rating = parseFloat(item.Rata2) || 0;
+            let ratingDisplay = (rating >= 1 && rating <= 5) ? rating.toFixed(1) : '?';
+            html += `<div class="recent-item"><div class="recent-info"><div class="recent-title">${item.Dosen || '-'} - ${item.Matakuliah || '-'}</div><div class="recent-date">${item.Tanggal || '-'} | Responden: Anonim</div></div><div><span class="rating-badge">Rating: ${ratingDisplay}</span><span class="predikat-badge">${item.Predikat || '-'}</span></div></div>`;
+        });
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    function renderTopDosen() {
+        const container = document.getElementById('topDosen');
+        if (penilaianData.length === 0) {
+            container.innerHTML = '<div class="empty-data">Belum ada data penilaian</div>';
+            return;
+        }
+        
+        const dosenRating = {};
+        for (const item of penilaianData) {
+            const dosen = item.Dosen;
+            let rating = parseFloat(item.Rata2) || 0;
+            if (dosen && rating >= 1 && rating <= 5) {
+                if (!dosenRating[dosen]) dosenRating[dosen] = { total: 0, count: 0 };
+                dosenRating[dosen].total += rating;
+                dosenRating[dosen].count += 1;
+            }
+        }
+        
+        const dosenList = Object.entries(dosenRating).map(([nama, nilai]) => ({ nama, rataRata: (nilai.total / nilai.count).toFixed(1), jumlah: nilai.count }));
+        dosenList.sort((a, b) => parseFloat(b.rataRata) - parseFloat(a.rataRata));
+        
+        if (dosenList.length === 0) {
+            container.innerHTML = '<div class="empty-data">Belum ada data penilaian valid</div>';
+            return;
+        }
+        
+        let html = '<div class="top-dosen-list">';
+        dosenList.slice(0, 5).forEach((dosen, index) => {
+            let medal = index === 0 ? '1' : index === 1 ? '2' : index === 2 ? '3' : `${index + 1}`;
+            html += `<div class="top-dosen-item"><div class="top-dosen-rank">${medal}</div><div class="top-dosen-info"><div class="top-dosen-nama">${dosen.nama}</div><div class="top-dosen-stats">${dosen.jumlah} penilaian</div></div><div class="top-dosen-rating">${dosen.rataRata}</div></div>`;
+        });
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    // Sumber Berita
+    const sumberBeritaResmi = [
+        { nama: 'Kementerian Kelautan dan Perikanan RI', deskripsi: 'Website resmi KKP dengan informasi kebijakan, berita, dan program terbaru.', link: 'https://kkp.go.id/berita/', sumber: 'pemerintah', gambar: 'https://kkp.go.id/assets/images/logo-kkp.png' },
+        { nama: 'Mongabay - Kelautan', deskripsi: 'Berita lingkungan, kelautan, dan perikanan.', link: 'https://www.mongabay.co.id/kategori/laut/', sumber: 'media', gambar: 'https://www.mongabay.co.id/wp-content/uploads/2020/12/cropped-favicon-mongabay-512x512-1-192x192.png' },
+        { nama: 'KOMPAS - Kelautan', deskripsi: 'Berita terbaru seputar kelautan dan perikanan.', link: 'https://www.kompas.com/tag/kelautan', sumber: 'media', gambar: 'https://www.kompas.com/favicon.ico' },
+        { nama: 'ANTARA News - Maritim', deskripsi: 'Kanal berita maritim, perikanan, dan kelautan.', link: 'https://www.antaranews.com/tag/maritim', sumber: 'media', gambar: 'https://www.antaranews.com/favicon.ico' },
+        { nama: 'FAO Fisheries', deskripsi: 'Informasi perikanan global dari PBB.', link: 'https://www.fao.org/fisheries/en', sumber: 'internasional', gambar: 'https://www.fao.org/favicon.ico' }
+    ];
+
+    function renderSumberBerita() {
+        let filtered = [...sumberBeritaResmi];
+        if (selectedKategori !== 'semua') filtered = filtered.filter(s => s.sumber === selectedKategori);
+        if (selectedKategori === 'semua' || selectedKategori === 'custom') filtered = [...filtered, ...sumberCustom];
+        
+        const container = document.getElementById('beritaContainer');
+        if (filtered.length === 0) { container.innerHTML = '<div class="empty-data">Belum ada sumber berita</div>'; return; }
+        
+        let html = '';
+        filtered.forEach(berita => {
+            let label = berita.sumber === 'pemerintah' ? 'Pemerintah' : berita.sumber === 'media' ? 'Media Nasional' : berita.sumber === 'internasional' ? 'Internasional' : 'Custom';
+            html += `<div class="berita-card"><div class="berita-image"><img src="${berita.gambar}" onerror="this.src='https://picsum.photos/id/1/400/200'"><span class="berita-sumber">${label}</span></div><div class="berita-content"><h4>${berita.nama}</h4><p>${berita.deskripsi}</p><div class="berita-footer"><span>${berita.link.substring(0, 50)}...</span><a href="${berita.link}" target="_blank" class="btn-berita">Kunjungi</a></div></div></div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    function renderSumberCustom() {
+        const container = document.getElementById('savedBeritaContainer');
+        if (sumberCustom.length === 0) { container.innerHTML = '<div class="empty-data">Belum ada sumber berita tersimpan</div>'; return; }
+        let html = '';
+        sumberCustom.forEach((s, i) => { html += `<div class="saved-berita-card"><div class="saved-berita-info"><div class="saved-berita-title">${s.nama}</div><div class="saved-berita-meta">${s.link.substring(0, 50)}...</div></div><button class="btn-delete" onclick="hapusSumber(${i})">Hapus</button></div>`; });
+        container.innerHTML = html;
+    }
+
+    function tambahSumberBerita() {
+        const url = document.getElementById('beritaUrl').value.trim();
+        const nama = document.getElementById('beritaJudul').value.trim();
+        const kategori = document.getElementById('beritaKategori').value;
+        if (!url) { alert('Masukkan URL'); return; }
+        sumberCustom.unshift({ nama: nama || `Sumber ${sumberCustom.length + 1}`, deskripsi: 'Sumber berita tambahan', link: url, sumber: kategori, gambar: 'https://picsum.photos/id/1/400/200' });
+        localStorage.setItem('sumberBeritaCustom', JSON.stringify(sumberCustom));
+        document.getElementById('beritaUrl').value = '';
+        document.getElementById('beritaJudul').value = '';
+        renderSumberBerita();
+        renderSumberCustom();
+    }
+
+    function hapusSumber(index) { sumberCustom.splice(index, 1); localStorage.setItem('sumberBeritaCustom', JSON.stringify(sumberCustom)); renderSumberBerita(); renderSumberCustom(); }
+    function hapusSemuaSumber() { if (confirm('Hapus semua?')) { sumberCustom = []; localStorage.setItem('sumberBeritaCustom', JSON.stringify(sumberCustom)); renderSumberBerita(); renderSumberCustom(); } }
+
+    document.querySelectorAll('.kategori-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.kategori-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            selectedKategori = this.getAttribute('data-sumber');
+            renderSumberBerita();
+        });
+    });
+
+    renderSumberBerita();
+    renderSumberCustom();
+    loadDataFromCloud();
+    setInterval(loadDataFromCloud, 60000);
+    
+    window.loadDataFromCloud = loadDataFromCloud;
+    window.tambahSumberBerita = tambahSumberBerita;
+    window.hapusSumber = hapusSumber;
+    window.hapusSemuaSumber = hapusSemuaSumber;
+</script>
+</body>
+</html>

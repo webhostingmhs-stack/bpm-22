@@ -1,0 +1,677 @@
+/* ============ ADMIN DASHBOARD STYLES ============ */
+:root {
+    --primary: #0F4C81;
+    --secondary: #1B9AAA;
+    --accent: #F4B942;
+    --background: #F5F9FC;
+    --text: #1E293B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(rgba(31, 31, 34, 0.272), rgba(214, 213, 255, 0.272)), url('/asset/image-asset/bg-hero.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: blur(3px);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* ============ NAVBAR ============ */
+.navbar {
+    background: var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    color: white;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar-logo .logo-icon {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.navbar-logo .logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.navbar-logo h1 {
+    font-size: 1.3rem;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: var(--accent);
+}
+
+.admin-badge {
+    background: var(--accent);
+    color: var(--primary) !important;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+/* ============ TAB NAVIGATION ============ */
+.tab-container {
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 8%;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 12px 24px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    border-radius: 30px 30px 0 0;
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    background: white;
+    border-bottom: 3px solid var(--accent);
+}
+
+.tab-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* ============ SECTION TITLE ============ */
+.section-title {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.section-subtitle {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+/* ============ CARD STYLES ============ */
+.admin-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
+}
+
+.admin-card:hover {
+    transform: translateY(-4px);
+}
+
+.card-header {
+    background: var(--primary);
+    color: white;
+    padding: 15px 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card-header span {
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+/* Add Card */
+.add-card {
+    cursor: pointer;
+    border: 2px dashed var(--primary);
+    background: rgba(255,255,255,0.9);
+    transition: 0.2s;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-card:hover {
+    background: white;
+    border-color: var(--accent);
+    transform: translateY(-4px);
+}
+
+/* ============ FORM STYLES ============ */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* ============ MEMBER AVATAR ============ */
+.member-avatar-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent);
+    margin: 0 auto 15px;
+    cursor: pointer;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ============ BUTTONS ============ */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background: #0a3a62;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 5px 14px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+    background: #b91c1c;
+    transform: scale(1.02);
+}
+
+.btn-delete:active {
+    transform: scale(0.98);
+}
+
+/* ============ GALLERY MANAGER ============ */
+.gallery-manager {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.gallery-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--secondary);
+}
+
+.gallery-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.gallery-img-item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #ddd;
+}
+
+.gallery-img-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-img-item .delete-img {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.upload-area:hover {
+    border-color: var(--accent);
+    background: #fef9e6;
+}
+
+/* ============ ASPIRASI STYLES ============ */
+.aspirasi-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.aspirasi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.aspirasi-nama {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.aspirasi-nim {
+    color: #666;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.aspirasi-tanggal {
+    font-size: 0.7rem;
+    color: #999;
+    margin-top: 4px;
+}
+
+.status-badge {
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-belum {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.status-dibaca {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-tindak {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.aspirasi-kategori {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.aspirasi-pesan {
+    background: #f8f9fa;
+    padding: 16px;
+    border-radius: 14px;
+    margin: 12px 0;
+    line-height: 1.7;
+    font-size: 0.9rem;
+    border-left: 3px solid var(--accent);
+}
+
+.aspirasi-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.btn-status {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.btn-status.read {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.btn-status.read:hover {
+    background: #4338ca;
+    color: white;
+}
+
+.btn-status.followup {
+    background: #ccf0e6;
+    color: #0e6b4f;
+}
+
+.btn-status.followup:hover {
+    background: #0e6b4f;
+    color: white;
+}
+
+/* ============ BERKAS STYLES ============ */
+.berkas-upload-area {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.berkas-upload-area h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.file-drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.file-drop-area:hover {
+    border-color: var(--accent);
+    background: #fef9e6;
+}
+
+.berkas-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.berkas-table th,
+.berkas-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.berkas-table th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+.btn-delete-berkas {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* ============ MODAL FORM ============ */
+.modal-form {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-form[style*="display: flex"] {
+    display: flex !important;
+}
+
+.modal-form-content {
+    background: white;
+    max-width: 500px;
+    width: 90%;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #999;
+    transition: 0.2s;
+}
+
+.modal-close:hover {
+    color: red;
+}
+
+.modal-form-content h3 {
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+/* ============ LOADING & EMPTY STATE ============ */
+.loading-state {
+    text-align: center;
+    padding: 50px;
+    color: white;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px;
+    background: white;
+    border-radius: 20px;
+    color: #666;
+}
+
+/* ============ TOAST NOTIFICATION ============ */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    z-index: 1100;
+    display: none;
+}
+
+.toast.success { background: #10b981; }
+.toast.error { background: #ef4444; }
+
+/* ============ FOOTER ============ */
+footer {
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 50px;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 5%;
+    }
+    
+    .tab-container {
+        padding: 0 5%;
+    }
+    
+    .tabs {
+        justify-content: center;
+    }
+    
+    .tab-btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .berkas-table {
+        font-size: 0.8rem;
+    }
+    
+    .berkas-table th,
+    .berkas-table td {
+        padding: 8px 10px;
+    }
+    
+    .aspirasi-header {
+        flex-direction: column;
+    }
+}

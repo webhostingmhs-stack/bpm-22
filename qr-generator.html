@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>QR Code Resmi - BPM FPIK UBT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="asset/image-asset/logo-bpm.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0F4C81 0%, #1B9AAA 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .qr-card {
+            background: white;
+            border-radius: 32px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+            max-width: 480px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .qr-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo-area {
+            margin-bottom: 15px;
+        }
+
+        .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 2px solid #F4B942;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: #0F4C81;
+            margin: 15px 0 5px;
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            color: #1B9AAA;
+            font-weight: 500;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+
+        .qr-wrapper {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 24px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        #qrcode canvas {
+            width: 200px !important;
+            height: 200px !important;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .url-box {
+            background: #f1f5f9;
+            padding: 12px 15px;
+            border-radius: 16px;
+            margin: 20px 0;
+            text-align: left;
+            word-break: break-all;
+        }
+
+        .url-label {
+            font-size: 12px;
+            color: #475569;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .url-text {
+            font-family: monospace;
+            font-size: 13px;
+            color: #0F4C81;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-download {
+            background: #0F4C81;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-download:hover {
+            background: #1B9AAA;
+            transform: scale(1.02);
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .btn-back:hover {
+            color: #0F4C81;
+            text-decoration: none; !important
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .qr-card {
+                padding: 25px 20px;
+            }
+            h1 { font-size: 1.5rem; }
+            #qrcode canvas { width: 160px !important; height: 160px !important; }
+            .logo-icon {
+                width: 55px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="qr-card">
+    <div class="logo-area">
+        <div class="logo-icon">
+            <img src="asset/image-asset/logo-bpm.png" alt="Logo BPM" onerror="this.src='https://via.placeholder.com/70x70?text=BPM'">
+        </div>
+    </div>
+    <h1>BPM FPIK UBT</h1>
+    <p class="subtitle">Scan QR Code untuk mengunjungi website resmi</p>
+
+    <div class="qr-wrapper">
+        <div id="qrcode"></div>
+    </div>
+
+    <div class="url-box">
+        <div class="url-label">URL Website Resmi (Terbaru):</div>
+        <div class="url-text" id="current-url"></div>
+    </div>
+
+    <button class="btn-download" onclick="downloadQR()">
+        Simpan QR Code (PNG)
+    </button>
+
+    <a href="/index.html" class="btn-back">← Kembali ke Beranda</a>
+    <footer>
+        Badan Perwakilan Mahasiswa<br>Fakultas Perikanan dan Ilmu Kelautan - UBT
+    </footer>
+</div>
+
+<!-- Library QR Code (offline siap pakai via CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+    (function() {
+        // >>> URL BARU YANG SUDAAH DIUPDATE <<<
+        const TARGET_URL = 'https://bpmfpikubt22.github.io/static-web-bpm/';
+        
+        // Tampilkan URL di halaman
+        const urlElement = document.getElementById('current-url');
+        if (urlElement) {
+            urlElement.textContent = TARGET_URL;
+        }
+
+        // Generate QR Code (ukuran 200x200, warna biru khas BPM)
+        const qrcodeContainer = document.getElementById("qrcode");
+        if (qrcodeContainer) {
+            // Kosongkan container jika ada isi lama
+            qrcodeContainer.innerHTML = "";
+            new QRCode(qrcodeContainer, {
+                text: TARGET_URL,
+                width: 200,
+                height: 200,
+                colorDark: "#0F4C81",    // Warna utama BPM
+                colorLight: "#FFFFFF",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+        }
+
+        // Fungsi untuk mendownload QR Code sebagai PNG
+        window.downloadQR = function() {
+            const canvas = qrcodeContainer.querySelector('canvas');
+            if (canvas) {
+                const link = document.createElement('a');
+                // Nama file: qrcode-bpm-resmi.png
+                link.download = 'qrcode-bpm-fpik-ubt.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            } else {
+                alert("QR Code belum selesai dimuat, coba lagi.");
+            }
+        };
+    })();
+</script>
+</body>
+</html>

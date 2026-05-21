@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPM FPIK UBT | Penilaian Kinerja Dosen</title>
+    <link rel="stylesheet" href="/asset/style.css">
+    <link rel="stylesheet" href="/asset/penilaian.css">
+    <link rel="stylesheet" href="/asset/bg-about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/asset/image-asset/logo-bpm.png">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-logo">
+        <div class="logo-icon">
+            <img src="/asset/image-asset/logo-bpm.png" alt="Logo BPM">
+        </div>
+        <h1>BPM FPIK UBT</h1>
+    </div>
+    <div class="nav-menu">
+        <a href="/index.html">Beranda</a>
+        <a href="/html/about.html">Tentang</a>
+        <a href="/html/dashboard/dashboard.html">Dashboard</a>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="penilaian-container">
+        <div class="penilaian-header">
+            <h2>Penilaian Kinerja Dosen</h2>
+            <p>BPM FPIK UBT | Periode Semester Genap 2025/2026</p>
+        </div>
+
+        <div id="alertMessage" class="alert"></div>
+
+        <div class="info-box">
+            <p>Informasi: Penilaian ini akan dikirim langsung ke database BPM FPIK UBT. Identitas responden akan dirahasiakan.</p>
+        </div>
+
+        <form id="penilaianForm">
+            <h3 class="section-title-custom">Identitas Responden</h3>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Data Anda akan dirahasiakan dan hanya digunakan untuk verifikasi internal.</p>
+            
+            <div class="row-2cols">
+                <div class="form-group">
+                    <label>Nama Lengkap <span class="required">*</span></label>
+                    <input type="text" id="nama" placeholder="Masukkan nama lengkap Anda" required>
+                </div>
+                <div class="form-group">
+                    <label>NPM <span class="required">*</span></label>
+                    <input type="text" id="nim" placeholder="Masukkan NIM (9-10 digit)" required>
+                </div>
+            </div>
+
+            <div class="row-2cols">
+                <div class="form-group">
+                    <label>Program Studi <span class="required">*</span></label>
+                    <select id="prodi" required>
+                        <option value="">Pilih Program Studi</option>
+                        <option value="Akuakultur">Akuakultur</option>
+                        <option value="Manajemen Sumberdaya Perairan">Manajemen Sumberdaya Perairan</option>
+                        <option value="Teknologi Hasil Perikanan">Teknologi Hasil Perikanan</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Semester <span class="required">*</span></label>
+                    <select id="semester" required>
+                        <option value="">Pilih Semester</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Email (Opsional)</label>
+                <input type="email" id="emailResponden" placeholder="Masukkan email untuk mendapat konfirmasi">
+                <small style="color: #666; font-size: 0.7rem;">Isi jika ingin mendapat salinan penilaian</small>
+            </div>
+
+            <h3 class="section-title-custom">Data Dosen yang Dinilai</h3>
+            
+            <div class="form-group">
+                <label>Nama Dosen <span class="required">*</span></label>
+                <select id="namaDosen" required>
+                    <option value="">Pilih Nama Dosen</option>
+                    <option value="Zainuddin, S.Pi., M.Sc">Zainuddin, S.Pi., M.Sc</option>
+                    <!-- tambahkan dosen lain sesuai kebutuhan -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Mata Kuliah <span class="required">*</span></label>
+                <input type="text" id="matakuliah" placeholder="Masukkan nama mata kuliah" required>
+            </div>
+
+            <h3 class="section-title-custom">Penilaian Kinerja Dosen</h3>
+            
+            <div class="rating-container">
+                <div class="rating-item">
+                    <span class="rating-label">1. Penguasaan Materi</span>
+                    <div class="stars">
+                        <input type="radio" name="rating_materi" value="1" id="materi1"><label for="materi1">★</label>
+                        <input type="radio" name="rating_materi" value="2" id="materi2"><label for="materi2">★</label>
+                        <input type="radio" name="rating_materi" value="3" id="materi3"><label for="materi3">★</label>
+                        <input type="radio" name="rating_materi" value="4" id="materi4"><label for="materi4">★</label>
+                        <input type="radio" name="rating_materi" value="5" id="materi5"><label for="materi5">★</label>
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <span class="rating-label">2. Metode Penyampaian</span>
+                    <div class="stars">
+                        <input type="radio" name="rating_metode" value="1" id="metode1"><label for="metode1">★</label>
+                        <input type="radio" name="rating_metode" value="2" id="metode2"><label for="metode2">★</label>
+                        <input type="radio" name="rating_metode" value="3" id="metode3"><label for="metode3">★</label>
+                        <input type="radio" name="rating_metode" value="4" id="metode4"><label for="metode4">★</label>
+                        <input type="radio" name="rating_metode" value="5" id="metode5"><label for="metode5">★</label>
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <span class="rating-label">3. Kehadiran & Ketepatan Waktu</span>
+                    <div class="stars">
+                        <input type="radio" name="rating_kehadiran" value="1" id="kehadiran1"><label for="kehadiran1">★</label>
+                        <input type="radio" name="rating_kehadiran" value="2" id="kehadiran2"><label for="kehadiran2">★</label>
+                        <input type="radio" name="rating_kehadiran" value="3" id="kehadiran3"><label for="kehadiran3">★</label>
+                        <input type="radio" name="rating_kehadiran" value="4" id="kehadiran4"><label for="kehadiran4">★</label>
+                        <input type="radio" name="rating_kehadiran" value="5" id="kehadiran5"><label for="kehadiran5">★</label>
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <span class="rating-label">4. Interaksi dengan Mahasiswa</span>
+                    <div class="stars">
+                        <input type="radio" name="rating_interaksi" value="1" id="interaksi1"><label for="interaksi1">★</label>
+                        <input type="radio" name="rating_interaksi" value="2" id="interaksi2"><label for="interaksi2">★</label>
+                        <input type="radio" name="rating_interaksi" value="3" id="interaksi3"><label for="interaksi3">★</label>
+                        <input type="radio" name="rating_interaksi" value="4" id="interaksi4"><label for="interaksi4">★</label>
+                        <input type="radio" name="rating_interaksi" value="5" id="interaksi5"><label for="interaksi5">★</label>
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <span class="rating-label">5. Keadilan Penilaian</span>
+                    <div class="stars">
+                        <input type="radio" name="rating_keadilan" value="1" id="keadilan1"><label for="keadilan1">★</label>
+                        <input type="radio" name="rating_keadilan" value="2" id="keadilan2"><label for="keadilan2">★</label>
+                        <input type="radio" name="rating_keadilan" value="3" id="keadilan3"><label for="keadilan3">★</label>
+                        <input type="radio" name="rating_keadilan" value="4" id="keadilan4"><label for="keadilan4">★</label>
+                        <input type="radio" name="rating_keadilan" value="5" id="keadilan5"><label for="keadilan5">★</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-title-custom">Kritik & Saran</h3>
+            
+            <div class="feedback-grid">
+                <div class="form-group">
+                    <label>Kelebihan Dosen</label>
+                    <textarea id="kelebihan" rows="4" placeholder="Apa kelebihan dosen ini?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Saran Perbaikan</label>
+                    <textarea id="kekurangan" rows="4" placeholder="Apa yang perlu ditingkatkan?"></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">Kirim Penilaian</button>
+        </form>
+
+        <div class="progress-section">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <p class="progress-text">Penilaian Anda sangat berharga untuk peningkatan kualitas pendidikan di FPIK UBT</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 BPM FPIK UBT</p>
+    <p class="version">Version: 4.0.0 | Sistem Penilaian Kinerja Dosen</p>
+</footer>
+
+<script src="/asset/js/penilaian.js"></script>
+</body>
+</html>

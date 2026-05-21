@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tentang BPM FPIK UBT</title>
+<link rel="stylesheet" href="/asset/style.css">
+<link rel="stylesheet" href="/asset/bg-about.css">
+<link rel="stylesheet" href="/asset/about-card.css">
+<link rel="icon" href="/asset/image-asset/logo-bpm.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    .loading-message {
+        text-align: center;
+        padding: 50px;
+        color: white;
+        font-size: 1.1rem;
+    }
+    .error-message {
+        text-align: center;
+        padding: 50px;
+        color: #dc2626;
+        background: rgba(255,255,255,0.9);
+        border-radius: 20px;
+        margin: 20px;
+    }
+    
+    /* ========== PERBAIKAN MODAL ========== */
+    .modal .modal-content {
+        max-width: 500px;
+        width: 90%;
+        margin: 5% auto;
+        border-radius: 24px;
+        overflow: hidden;
+    }
+    
+    #member-modal-body {
+        padding: 30px !important;
+    }
+    
+    #member-modal-body > div {
+        text-align: center;
+    }
+    
+    .modal-detail-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--accent);
+        margin-bottom: 20px;
+    }
+    
+    .modal-detail-name {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 8px;
+    }
+    
+    .modal-detail-jabatan {
+        color: var(--secondary);
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        display: inline-block;
+    }
+    
+    .modal-detail-deskripsi {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #4a5568;
+        margin-bottom: 20px;
+        text-align: left;
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 12px;
+    }
+    
+    .modal-detail-kontak {
+        background: #f0f2f5;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: left;
+    }
+    
+    .modal-detail-kontak p {
+        margin: 10px 0;
+        font-size: 0.85rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+    }
+    
+    .modal-detail-kontak strong {
+        color: var(--primary);
+        width: 85px;
+        font-weight: 600;
+    }
+    
+    .modal-detail-kontak em {
+        color: #999;
+        font-style: italic;
+    }
+    
+    /* Perbaikan close button */
+    .close {
+        top: 10px;
+        right: 15px;
+        background: white;
+        width: 32px;
+        height: 32px;
+        font-size: 28px;
+        line-height: 1;
+    }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+<div class="navbar-logo">
+    <div class="logo-icon">
+        <img src="/asset/image-asset/logo-bpm.png" alt="Logo BPM" onerror="this.src='https://via.placeholder.com/40x40?text=BPM'">
+    </div>
+    <h1>BPM FPIK UBT</h1>
+</div>
+<div class="nav-menu">
+<a href="/index.html">Beranda</a>
+<a href="#">Tentang</a>
+<a href="/html/dashboard/dashboard.html">Dashboard</a>
+</div>
+</nav>
+
+<section class="section">
+<h2 class="section-title">Struktur Kepengurusan</h2>
+<div id="anggotaContainer" class="card-container">
+    <div class="loading-message">Memuat data anggota...</div>
+</div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+<h2 class="section-title">Visi & Misi</h2>
+<div class="card-container">
+<div class="card">
+<div class="card-content">
+<h3>Visi</h3>
+<p>Menjadikan BPM FPIK UBT sebagai lembaga legislatif mahasiswa yang aspiratif, transparan, dan akuntabel.</p>
+</div>
+</div>
+<div class="card">
+<div class="card-content">
+<h3>Misi</h3>
+<ul style="margin-left: 20px; line-height: 1.8;">
+<li>Menampung aspirasi mahasiswa</li>
+<li>Mengawasi kinerja eksekutif</li>
+<li>Meningkatkan partisipasi mahasiswa</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<div id="memberModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeMemberModal()">&times;</span>
+<div id="member-modal-body"></div>
+</div>
+</div>
+
+<footer>
+<p>© 2026 BPM FPIK UBT</p>
+<br><p>Versi 0.1.4 | Tentang</p>
+</footer>
+
+<script>
+// ============= KONFIGURASI =============
+const API_URL = 'https://script.google.com/macros/s/AKfycbzElA-8pOdO9SLZU9SUHbuP2wINi1va1Z8XIFNK9htVnv6OnSy7xmUIrCR0EKGEcbXPzA/exec';
+
+// ============= AMBIL DATA DARI API =============
+async function loadAnggota() {
+    const container = document.getElementById('anggotaContainer');
+    if (!container) return;
+    
+    container.innerHTML = '<div class="loading-message">Memuat data anggota...</div>';
+    
+    try {
+        const response = await fetch(API_URL + '?action=getAnggota');
+        const result = await response.json();
+        
+        if (result.success && result.data && result.data.length > 0) {
+            renderAnggota(result.data);
+        } else {
+            container.innerHTML = '<div class="error-message">Belum ada data anggota. Silakan tambah melalui admin panel.</div>';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        container.innerHTML = '<div class="error-message">Gagal memuat data anggota. Periksa koneksi.</div>';
+    }
+}
+
+// ============= RENDER CARD ANGGOTA =============
+function renderAnggota(anggotaList) {
+    const container = document.getElementById('anggotaContainer');
+    if (!container) return;
+    
+    const urutanJabatan = ['Penasehat', 'Pembina', 'Ketua Umum', 'Sekretaris Umum', 'Bendahara Umum', 'Komisi I', 'Komisi II', 'Komisi III', 'Komisi IV'];
+    anggotaList.sort((a, b) => {
+        const indexA = urutanJabatan.findIndex(j => a.jabatan.includes(j));
+        const indexB = urutanJabatan.findIndex(j => b.jabatan.includes(j));
+        if (indexA === -1 && indexB === -1) return 0;
+        if (indexA === -1) return 1;
+        if (indexB === -1) return -1;
+        return indexA - indexB;
+    });
+    
+    let html = '';
+    
+    for (const m of anggotaList) {
+        let fotoUrl = '/asset/image-asset/default-avatar.png';
+        if (m.fotoUrl && m.fotoUrl !== '' && !m.fotoUrl.includes('null')) {
+            fotoUrl = m.fotoUrl;
+        }
+        
+        let deskripsiSingkat = m.deskripsi || '';
+        if (deskripsiSingkat.length > 100) {
+            deskripsiSingkat = deskripsiSingkat.substring(0, 100) + '...';
+        }
+        
+        html += `
+            <div class="about-card">
+                <div class="member-avatar">
+                    <img src="${fotoUrl}" alt="${escapeHtml(m.nama)}" onerror="this.src='/asset/image-asset/default-avatar.png'">
+                </div>
+                <div class="card-content">
+                    <h3>${escapeHtml(m.jabatan)}</h3>
+                    <p>${escapeHtml(deskripsiSingkat)}</p>
+                    <p style="font-size: 0.85rem; color: var(--secondary);">${escapeHtml(m.nama)}</p>
+                    <button class="card-btn-small" onclick='openMemberModal(${JSON.stringify({
+                        nama: m.nama,
+                        jabatan: m.jabatan,
+                        deskripsi: m.deskripsi || '',
+                        fotoUrl: fotoUrl,
+                        email: m.email || '',
+                        instagram: m.instagram || '',
+                        whatsapp: m.whatsapp || '',
+                        anggotaTim: m.anggotaTim || ''
+                    })})'>Lihat Detail</button>
+                </div>
+            </div>
+        `;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ============= MODAL DETAIL =============
+function openMemberModal(data) {
+    const modal = document.getElementById("memberModal");
+    const modalBody = document.getElementById("member-modal-body");
+    
+    let kontakHtml = '';
+    if (data.email) kontakHtml += `<p><strong>Email :</strong> ${escapeHtml(data.email)}</p>`;
+    if (data.instagram) kontakHtml += `<p><strong>Instagram :</strong> ${escapeHtml(data.instagram)}</p>`;
+    if (data.whatsapp) kontakHtml += `<p><strong>WhatsApp :</strong> ${escapeHtml(data.whatsapp)}</p>`;
+    if (data.anggotaTim) kontakHtml += `<p><strong>Anggota Tim :</strong> ${escapeHtml(data.anggotaTim)}</p>`;
+    
+    if (!kontakHtml) {
+        kontakHtml = '<p><em>Informasi kontak belum tersedia</em></p>';
+    }
+    
+    const deskripsiTeks = data.deskripsi && data.deskripsi !== '' ? data.deskripsi : 'Tidak ada deskripsi';
+    
+    const content = `
+        <div style="text-align:center">
+            <img src="${data.fotoUrl}" class="modal-detail-img" onerror="this.src='/asset/image-asset/default-avatar.png'">
+            <div class="modal-detail-name">${escapeHtml(data.nama)}</div>
+            <div class="modal-detail-jabatan">${escapeHtml(data.jabatan)}</div>
+            <div class="modal-detail-deskripsi">${escapeHtml(deskripsiTeks)}</div>
+            <div class="modal-detail-kontak">
+                ${kontakHtml}
+            </div>
+        </div>
+    `;
+    
+    modalBody.innerHTML = content;
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+}
+
+function closeMemberModal() {
+    const modal = document.getElementById("memberModal");
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// ============= INIT =============
+loadAnggota();
+
+window.onclick = function(event) {
+    const modal = document.getElementById("memberModal");
+    if (event.target == modal) closeMemberModal();
+}
+</script>
+</body>
+</html>
